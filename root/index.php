@@ -1,3 +1,26 @@
+<?php
+$url = "weerdata_verwerkt.txt";
+$result = file_get_contents($url, false);
+if ($result === FALSE) {
+    echo "Het is niet gelukt om de data op te halen!\n$data";
+}
+
+$result = explode("\n", $result);
+
+function printJSON($result){
+    echo "[";
+    for ($i = 0; $i < sizeof($result) ;$i++ ) {
+        $tempres = explode(",", $result[$i]);
+
+        for ($j = 0; $j < sizeof($tempres); $j++) {
+            echo "{x:".$tempres[0].",y:".($tempres[1]/10)."},\n"; // { x: 10, y: 51 },
+        }
+    }
+    echo "]";
+}
+?>
+
+
 <!doctype html>
 <html class="no-js" lang="">
 <head>
@@ -7,7 +30,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="src/css/main.css">
 </head>
 <body>
 <!--[if lt IE 8]>
@@ -18,55 +41,95 @@
 <h1>KNMI Weerdata</h1>
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery-3.2.1.min.js"><\/script>')</script>
-<script src="js/main.js"></script>
+<script>window.jQuery || document.write('<script src="src/js/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="src/js/main.js"></script>
 
-<?php
-$url = 'http://projects.knmi.nl/klimatologie/daggegevens/getdata_dag.cgi';
-$data = array('byear' => '2017',
-    'bmonth' => '6',
-    'bday' => '1',
-    'eyear' => '2017',
-    'emonth' => '6',
-    'eday' => '5',
-    'variabele' => 'TG',
-    '&variabele' => 'TN',
-    '&variabele' => 'TNH',
-    '&variabele' => 'TX',
-    '&variabele' => 'TXH',
-    '&variabele' => 'T10N',
-    '&variabele' => 'T10NH',
-    '&variabele' => 'RH',
-    '&variabele' => 'RHX',
-    '&variabele' => 'RHXH',
-    'stations' => '210',
-    'stations' => '330',
-    'stations' => '344'
-);
 
-// use key 'http' even if you send the request to https://...
-$options = array(
-    'http' => array(
-        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-        'method'  => 'POST',
-        'content' => http_build_query($data)
-    )
-);
-$context  = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
-if ($result === FALSE) {
-    echo "Het is niet gelukt om de data op te halen!\n$data";
-}
 
-// Output van KNMI heeft eerst een deel comments.
-// Om deze te filteren splitsen we de output op \n (new lines) zodat deze overgeslagen kan worden.
-//$result = explode("\n", $result);
-print_r($result);
+<style>
+    img{
+        pointer-events: none;
+    }
+</style>
+<script type="text/javascript" src="src/js/canvasjs.min.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer",
+            {
+                animationEnabled: true,
+                theme: "theme2",
+                title:{
+                    text: "Multi Series Spline Chart - Hide / Unhide via Legend"
+                },
+                axisY:[{
+                    lineColor: "#4F81BC",
+                    tickColor: "#4F81BC",
+                    labelFontColor: "#4F81BC",
+                    titleFontColor: "#4F81BC",
+                    lineThickness: 2,
+                },
+                    {
+                        lineColor: "#C0504E",
+                        tickColor: "#C0504E",
+                        labelFontColor: "#C0504E",
+                        titleFontColor: "#C0504E",
+                        lineThickness: 2,
 
-//for ($i = 12; $i < sizeof($result) ;$i++ ) {
-//    echo $result[$i]."<br>";
-//}
-?>
+                    }],
+                data: [
+                    {
+                        type: "spline", //change type to bar, line, area, pie, etc
+                        showInLegend: true,
+                        dataPoints:
+                        <?php printJSON($result); ?>
+//                            [
+//                            { x: 10, y: 51 },
+//                            { x: 20, y: 45},
+//                            { x: 30, y: 50 },
+//                            { x: 40, y: 62 },
+//                            { x: 50, y: 95 },
+//                            { x: 60, y: 66 },
+//                            { x: 70, y: 24 },
+//                            { x: 80, y: 32 },
+//                            { x: 90, y: 16}
+//                        ]
+                    },
+                    {
+                        type: "spline",
+                        axisYIndex: 1,
+                        showInLegend: true,
+                        dataPoints: [
+//                            { x: 10, y: 201 },
+//                            { x: 20, y: 404},
+//                            { x: 30, y: 305 },
+//                            { x: 40, y: 405 },
+//                            { x: 50, y: 905 },
+//                            { x: 60, y: 508 },
+//                            { x: 70, y: 108 },
+//                            { x: 80, y: 300 },
+//                            { x: 90, y: 101}
+                        ]
+                    }
+                ],
+                legend: {
+                    cursor: "pointer",
+                    itemclick: function (e) {
+                        if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                            e.dataSeries.visible = false;
+                        } else {
+                            e.dataSeries.visible = true;
+                        }
+                        chart.render();
+                    }
+                }
+            });
+
+        chart.render();
+    }
+</script>
+
+<div id="chartContainer" style="height: 300px; width: 100%; position: relative"></div>
+
 
 </body>
 </html>
