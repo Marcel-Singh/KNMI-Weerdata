@@ -1,0 +1,41 @@
+Voor Delft een gemiddelde pakken uit:
+ 210 Valkenburg 
+ 330 Hoek van Holland 
+ 344 Rotterdam 
+
+wget -O weerdata --post-data="stns=210:330:344&vars=VICL:PRCP&byear=2017&bmonth=7&bday=5&eyear=2017&emonth=7&eday=6" http://projects.knmi.nl/klimatologie/daggegevens/getdata_dag.cgi
+
+curl -O /Applications/XAMPP/xamppfiles/htdocs/weerdata.txt -d "stns=210:330:344&vars=TG:TN:TNH:TX:TXH:T10N:T10NH:RH:RHX:RHXH&byear=2017&bmonth=7&bday=5&eyear=2017&emonth=7&eday=6" http://projects.knmi.nl/klimatologie/daggegevens/getdata_dag.cgi
+
+curl -O ~/Applications/XAMPP/xamppfiles/htdocs/BigData -d "byear=2017&bmonth=6&bday=1&eyear=2017&emonth=6&eday=5&variabele=TG&stations=210&stations=330&stations=344" http://projects.knmi.nl/klimatologie/daggegevens/getdata_dag.cgi
+
+&variabele=TN&variabele=TNH&variabele=TX&variabele=TXH&variabele=TG&variabele=T10N&variabele=RH&variabele=RHX&variabele=RHXH
+
+stns=210:330:344
+&vars=TG:TN:TNH:TX:TXH:T10N:T10NH:RH:RHX:RHXH
+&byear=2017
+&bmonth=7
+&bday=1
+&eyear=2017
+&emonth=7
+&eday=6
+
+byear=2017
+&bmonth=6
+&bday=1
+&eyear=2017
+&emonth=6
+&eday=5
+&variabele=TG
+&variabele=TN
+&variabele=TNH
+&variabele=TX
+&variabele=TXH
+&variabele=T10N
+&variabele=T10NH
+&variabele=RH
+&variabele=RHX
+&variabele=RHXH
+&stations=210
+&stations=330
+&stations=344
