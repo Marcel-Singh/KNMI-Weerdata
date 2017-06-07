@@ -13,17 +13,27 @@ my $server_endpoint = "http://projects.knmi.nl/klimatologie/daggegevens/getdata_
 my $req = HTTP::Request->new(POST => $server_endpoint);
  
 # add POST data to HTTP request body
-my $post_data = "stns=ALL";
+my $post_data = "stns=330:344&vars=TG:RH:TNH&start=20170606&end=20170606";
 $req->content($post_data);
  
 my $resp = $ua->request($req);
 if ($resp->is_success) {
+
+     my $ymd = sub{sprintf '%04d%02d%02d', $_[5]+1900, $_[4]+1, $_[3]}->(localtime);
+
 	
     my $message = $resp->decoded_content;
+    my @temp= split /,/, $message;
+    my $datum = $temp[5];
+    print "$temp[4]\n";
+    print "$temp[10]\n";
+
     open(my $file, '>', 'weerdata.txt');
-    print $file "$message";
+    print $file "$temp[5]$temp[6]\n$temp[5]$temp[10]\n";
     close $file;
-    print "$message\n";
+
+ 
+    
 
 #print $resp->content;
 }
