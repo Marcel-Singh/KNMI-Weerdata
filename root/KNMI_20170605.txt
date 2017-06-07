@@ -1,0 +1,33 @@
+# BRON: KONINKLIJK NEDERLANDS METEOROLOGISCH INSTITUUT (KNMI)
+# Opmerking: door stationsverplaatsingen en veranderingen in waarneemmethodieken zijn deze tijdreeksen van dagwaarden mogelijk inhomogeen! Dat betekent dat deze reeks van gemeten waarden niet geschikt is voor trendanalyse. Voor studies naar klimaatverandering verwijzen we naar de gehomogeniseerde reeks maandtemperaturen van De Bilt <http://www.knmi.nl/kennis-en-datacentrum/achtergrond/gehomogeniseerde-reeks-maandtemperaturen-de-bilt> of de Centraal Nederland Temperatuur <http://www.knmi.nl/kennis-en-datacentrum/achtergrond/centraal-nederland-temperatuur-cnt>.
+# 
+# 
+# STN      LON(east)   LAT(north)     ALT(m)  NAME
+# 210:         4.430       52.171      -0.20  VALKENBURG
+# 330:         4.122       51.992      11.90  HOEK VAN HOLLAND
+# 344:         4.447       51.962      -4.30  ROTTERDAM
+# 
+# YYYYMMDD = Datum (YYYY=jaar MM=maand DD=dag); 
+# TG       = Etmaalgemiddelde temperatuur (in 0.1 graden Celsius); 
+# TN       = Minimum temperatuur (in 0.1 graden Celsius); 
+# TNH      = Uurvak waarin TN is gemeten; 
+# TX       = Maximum temperatuur (in 0.1 graden Celsius); 
+# TXH      = Uurvak waarin TX is gemeten; 
+# T10N     = Minimum temperatuur op 10 cm hoogte (in 0.1 graden Celsius); 
+# T10NH    = 6-uurs tijdvak waarin T10N is gemeten; 6=0-6 UT, 12=6-12 UT, 18=12-18 UT, 24=18-24 UT
+# RH       = Etmaalsom van de neerslag (in 0.1 mm) (-1 voor <0.05 mm); 
+# RHX      = Hoogste uursom van de neerslag (in 0.1 mm) (-1 voor <0.05 mm); 
+# RHXH     = Uurvak waarin RHX is gemeten; 
+# 
+# STN,YYYYMMDD,   TG,   TN,  TNH,   TX,  TXH, T10N,T10NH,   RH,  RHX, RHXH
+# 
+  330,20170601,  161,   89,    3,  205,   13,   56,    6,    0,    0,    1
+  330,20170602,  195,  125,    4,  239,   12,   87,    6,    0,    0,    1
+  330,20170603,  170,  132,   24,  209,   11,  125,   24,   50,   42,    7
+  330,20170604,  157,  120,    3,  188,   13,   98,    6,    0,    0,    1
+  330,20170605,  177,  147,    1,  215,   15,  143,    6,    1,    1,   24
+  344,20170601,  169,   75,    3,  234,   15,   31,    6,    0,    0,    1
+  344,20170602,  205,  120,    4,  261,   12,   83,    6,    0,    0,    1
+  344,20170603,  178,  134,   23,  222,   12,  124,   24,   32,   32,    8
+  344,20170604,  152,  112,   21,  187,   14,   83,   24,    0,    0,    1
+  344,20170605,  183,  113,    1,  226,   13,   95,    6,   -1,   -1,    4
