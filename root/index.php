@@ -10,7 +10,7 @@ $result = explode("\n", $result);
 $minimum = 100;
 $maximum = -100;
 
-$currentTemp = 20;
+$currentTemp = 17;
 
 function printJSON($result){
     global $minimum, $maximum;
@@ -102,7 +102,7 @@ function getMinMax(){
     window.onload = function () {
         var chart = new CanvasJS.Chart("chartContainer", {
             title: {
-                text: "Averages of past 5 years.",
+                text: "Averages of past 48 years.",
             },
             toolTip: {
                 shared: true,

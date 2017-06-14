@@ -54,7 +54,7 @@ my $message = "";
 my $min = 0;
 my $max = 0;
 
-for(my $i = $year; $i > 1971; $i--){
+for(my $i = 1971; $i <= $year; $i++){
     #my $DATE = strftime '%Y%m%d', localtime();
     #print localtime();
 
