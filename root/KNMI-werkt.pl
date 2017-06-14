@@ -33,28 +33,29 @@ if ($resp->is_success) {
 
 #verwijder comments
  	while ($message=~ m/^#.*\n/) {
-$message=~ s/^#.*\n//g;
-};
+        $message=~ s/^#.*\n//g;
+    };
 
 #preppen
  	while ($message=~ m/ /) {
-$message=~ s/ //g;
-$message=~ s/330,//g;
-$message=~ s/344,//g;
-};
+        $message=~ s/ //g;
+        $message=~ s/330,//g;
+        $message=~ s/344,//g;
+    };
 
 	print $message;
 
-   my @temp= split /,/, $message;
+    my @temp= split /,/, $message;
 
 
-   open(my $file, '>', 'weerdata.txt');
-   print $file $message;
-   close $file;
+    open(my $file, '>', 'weerdata.txt');
+    print $file $message;
+    close $file;
 
 #print $message->content;
 }
 else {
     print "HTTP POST error code: ", $resp->code, "\n";
     print "HTTP POST error message: ", $resp->message, "\n";
+    #print $resp;
 }
