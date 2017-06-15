@@ -1,0 +1,31 @@
+# BRON: KONINKLIJK NEDERLANDS METEOROLOGISCH INSTITUUT (KNMI)
+# Opmerking: door stationsverplaatsingen en veranderingen in waarneemmethodieken zijn deze tijdreeksen van dagwaarden mogelijk inhomogeen! Dat betekent dat deze reeks van gemeten waarden niet geschikt is voor trendanalyse. Voor studies naar klimaatverandering verwijzen we naar de gehomogeniseerde reeks maandtemperaturen van De Bilt <http://www.knmi.nl/kennis-en-datacentrum/achtergrond/gehomogeniseerde-reeks-maandtemperaturen-de-bilt> of de Centraal Nederland Temperatuur <http://www.knmi.nl/kennis-en-datacentrum/achtergrond/centraal-nederland-temperatuur-cnt>.
+# 
+# 
+# STN      LON(east)   LAT(north)     ALT(m)  NAME
+# 330:         4.122       51.992      11.90  HOEK VAN HOLLAND
+# 344:         4.447       51.962      -4.30  ROTTERDAM
+# 
+# YYYYMMDD = Date (YYYY=year MM=month DD=day); 
+# TG       = Daily mean temperature in (0.1 degrees Celsius); 
+# TN       = Minimum temperature (in 0.1 degrees Celsius); 
+# TX       = Maximum temperature (in 0.1 degrees Celsius); 
+# 
+# STN,YYYYMMDD,   TG,   TN,   TX
+# 
+  330,19980608,  157,  139,  179
+  330,19980609,  161,  149,  175
+  330,19980610,  151,  117,  178
+  330,19980611,  130,  103,  165
+  330,19980612,  111,   83,  136
+  330,19980613,  139,   83,  186
+  330,19980614,  144,  116,  183
+  330,19980615,  143,  122,  183
+  344,19980608,  160,  136,  182
+  344,19980609,  164,  149,  182
+  344,19980610,  152,  112,  182
+  344,19980611,  133,  101,  175
+  344,19980612,  104,   58,  147
+  344,19980613,  131,   48,  180
+  344,19980614,  138,  116,  174
+  344,19980615,  146,  103,  187

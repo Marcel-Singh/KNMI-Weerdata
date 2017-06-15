@@ -50,24 +50,41 @@ if ($resp->is_success) {
 
     #verwijder comments
  	while ($message=~ m/^#.*\n/) {
-$message=~ s/^#.*\n//g;
-};
+        $message=~ s/^#.*\n//g;
+    };
 
 #preppen
  	while ($message=~ m/ /) {
+<<<<<<< HEAD
 $message=~ s/ //g;
 $message=~ s/330,.........//g;
 $message=~ s/344,.........//g;
 };
 
    my @lines= split /\n/, $message;
+=======
+        $message=~ s/ //g;
+        $message=~ s/330,//g;
+        $message=~ s/344,//g;
+    };
+
+	print $message;
+
+    my @temp= split /,/, $message;
+>>>>>>> 77f3167dff62738e562529fb693731a002756e3f
 
 my $aap;
 my $file;
 foreach $aap (@lines) {
 $aap = $aap * 0.1;
 
+<<<<<<< HEAD
 }
+=======
+    open(my $file, '>', 'weerdata.txt');
+    print $file $message;
+    close $file;
+>>>>>>> 77f3167dff62738e562529fb693731a002756e3f
 
 sub average {
 my @array = @_; # save the array passed to this function
@@ -90,4 +107,5 @@ close $file;
 else {
     print "HTTP POST error code: ", $resp->code, "\n";
     print "HTTP POST error message: ", $resp->message, "\n";
+    #print $resp;
 }
