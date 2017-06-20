@@ -1,5 +1,5 @@
 <?php
-$url = "weerdata_week.txt";
+$url = "history.txt";
 $result = file_get_contents($url, false);
 if ($result === FALSE) {
     echo "Het is niet gelukt om de data op te halen!\n$data";
@@ -10,7 +10,8 @@ $result = explode("\n", $result);
 $minimum = 100;
 $maximum = -100;
 
-$currentTemp = 17;
+
+$currentTemp = file_get_contents("vandaag.txt", false);;
 
 function printJSON($result){
     global $minimum, $maximum;
@@ -84,7 +85,7 @@ function getMinMax(){
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<h1>KNMI Weerdata</h1>
+
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>window.jQuery || document.write('<script src="src/js/jquery-3.2.1.min.js"><\/script>')</script>
@@ -102,7 +103,7 @@ function getMinMax(){
     window.onload = function () {
         var chart = new CanvasJS.Chart("chartContainer", {
             title: {
-                text: "Averages of past 48 years.",
+                text: "Het gemiddelde temperatuur van 48 jaar geleden.",
             },
             toolTip: {
                 shared: true,
@@ -116,13 +117,13 @@ function getMinMax(){
                     indexLabelFormatter: formatter,
                     dataPoints: [
                         <?php printJSON($result); ?>
-//                        {label: "Monday", y: [15, 26]},
-//                        {label: "Tuesday", y: [15, 27]},
-//                        {label: "Wednesday", y: [13, 27]},
-//                        {label: "Thursday", y: [14, 27]},
-//                        {label: "Friday", y: [15, 26]},
-//                        {label: "Saturday", y: [17, 26]},
-//                        {label: "Sunday", y: [16, 27]},
+//                        {label: "Maandag", y: [15, 26]},
+//                        {label: "Dinsdag", y: [15, 27]},
+//                        {label: "Woensdag", y: [13, 27]},
+//                        {label: "Donderdag", y: [14, 27]},
+//                        {label: "Vrijdag", y: [15, 26]},
+//                        {label: "Zaterdag", y: [17, 26]},
+//                        {label: "Zondag", y: [16, 27]},
                     ]
                 }],
             axisY: {
@@ -248,6 +249,12 @@ function getMinMax(){
             print '<img src="src/img/trousers.png">';
         }
         ?>
+    </div>
+</div>
+
+<div id="container" class="container">
+    <div class="header">
+        <div class="header text"><h1>Wat2Wear.NL<h1></div>
     </div>
 </div>
 

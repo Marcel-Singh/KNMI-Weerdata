@@ -126,17 +126,6 @@ for(my $i = 1971; $i <= $year; $i++){
 calculateAverages();
 writeOut();
 
-
-
-
-
-
-
-
-
-
-
-
 ###############
 # SUBROUTINES #
 ###############
