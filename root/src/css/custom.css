@@ -1,0 +1,82 @@
+body{
+    background: #59a8c5;
+    background: -moz-radial-gradient(center, ellipse cover, #59a8c5 0%, #006bc3 100%);
+    background: -webkit-radial-gradient(center, ellipse cover, #59a8c5 0%,#006bc3 100%);
+    background: radial-gradient(ellipse at center, #59a8c5 0%,#006bc3 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59a8c5', endColorstr='#006bc3',GradientType=1 );
+    color: white;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+header{
+    display: flex;
+    background: rgba(0,0,0,0.5);
+    padding: 30px;
+}
+
+#chartContainer {
+    height: 300px;
+    width: 90%;
+    margin: 5%;
+}
+
+#cloths{
+    width: 50%;
+    text-align: center;
+}
+
+#cloths h3{
+    font-size: 20pt;
+    color: white;
+}
+
+#advice{
+    display: flex;
+}
+
+#top{
+    width: 50%;
+    text-align: right;
+}
+
+#bottom{
+    width: 50%;
+    text-align: left;
+}
+
+#top img{
+    width: 150px;
+}
+
+#bottom img{
+    width: 150px;
+}
+
+#temperature{
+    font-size: 50pt;
+    width: 50%;
+    text-align: center;
+}
+
+#temperature h1{
+    font-size: 100pt;
+    margin: 0;
+    color: white;
+}
+
+#temperature h3{
+    font-size: 20pt;
+    margin: 0;
+    color: white;
+}
+
+#titel{
+    text-align: center;
+}
+
+#titel h1{
+    font-size: 50pt;
+    margin: 60px 0;
+    color: white;
+}

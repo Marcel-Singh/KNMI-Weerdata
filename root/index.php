@@ -10,7 +10,13 @@ $result = explode("\n", $result);
 $minimum = 100;
 $maximum = -100;
 
-$currentTemp = 17;
+$vandaagurl = "vandaag.txt";
+$vandaag = file_get_contents($vandaagurl, false);
+if ($vandaag === FALSE) {
+    echo "Het is niet gelukt om de data van vandaag op te halen!\n$vandaag";
+}
+
+$currentTemp = $vandaag;
 
 function printJSON($result){
     global $minimum, $maximum;
@@ -46,36 +52,7 @@ function getMinMax(){
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="src/css/main.css">
-    <style>
-        #chartContainer {
-            height: 300px;
-            width: 90%;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            margin: 5%;
-        }
-
-        #top img{
-            width: 100px;
-        }
-
-        #bottom img{
-            width: 100px;
-        }
-
-        #cloths{
-            right: 0;
-            position: absolute;
-            margin-right: 50px;
-        }
-
-        #temperature{
-            position: absolute;
-            font-size: 50pt;
-            margin-left: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="src/css/custom.css">
 </head>
 <body>
 <!--[if lt IE 8]>
@@ -84,7 +61,6 @@ function getMinMax(){
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<h1>KNMI Weerdata</h1>
 
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>window.jQuery || document.write('<script src="src/js/jquery-3.2.1.min.js"><\/script>')</script>
@@ -103,18 +79,23 @@ function getMinMax(){
         var chart = new CanvasJS.Chart("chartContainer", {
             title: {
                 text: "Averages of past 48 years.",
+                fontColor: "white",
+                fontWeight: "normal"
             },
+            backgroundColor: "transparent",
             toolTip: {
                 shared: true,
-                content: "<strong>Temperature: </strong> </br> Min: {y[0]}°C, Max: {y[1]}°C",
+                content: "<strong>Temperature: </strong> </br> Min: {y[0]}°C, Max: {y[1]}°C"
             },
             data: [
                 {
                     type: "rangeSplineArea",
                     fillOpacity: 0,
-                    color: "#91AAB1",
+                    color: "white",
+                    indexLabelFontColor: "white",
                     indexLabelFormatter: formatter,
                     dataPoints: [
+
                         <?php printJSON($result); ?>
 //                        {label: "Monday", y: [15, 26]},
 //                        {label: "Tuesday", y: [15, 27]},
@@ -125,12 +106,18 @@ function getMinMax(){
 //                        {label: "Sunday", y: [16, 27]},
                     ]
                 }],
+            axisX: {
+                labelFontColor: "white",
+                lineColor: "white"
+            },
             axisY: {
                 includeZero: false,
                 suffix: "°C",
                 <?php getMinMax(); ?>
-                gridThickness: 0
-            },
+                gridThickness: 0,
+                labelFontColor: "white",
+                lineColor: "white"
+            }
         });
         chart.render();
 
@@ -145,7 +132,7 @@ function getMinMax(){
                 return e.dataPoint.y[e.index];
             }
         }
-    }
+    };
 
 
     /* IN GEVAL DAT MIN EN MAX TEMPERATUREN NIET WERKT
@@ -226,35 +213,42 @@ function getMinMax(){
      }
      */
 </script>
-
-<div id="chartContainer"></div>
-<div id="cloths">
-    <div id="top">
-        <?php
-        if($currentTemp >= 17){
-            print '<img src="src/img/tshirt.png">';
-        }
-        if($currentTemp < 17){
-            print '<img src="src/img/hoodie.png">';
-        }
-        ?>
-    </div>
-    <div id="bottom">
-        <?php
-        if($currentTemp >= 20){
-            print '<img src="src/img/shorts.png">';
-        }
-        if($currentTemp < 20){
-            print '<img src="src/img/trousers.png">';
-        }
-        ?>
-    </div>
+<div id="titel">
+    <h1>What to wear today?</h1>
 </div>
-
-<div id="temperature">
-    <h1><?php print $currentTemp."ºC"; ?></h1>
-</div>
-
-
+<header>
+    <div id="temperature">
+        <h3>Current temperature:</h3>
+        <h1><?php print $currentTemp."ºC"; ?></h1>
+    </div>
+    <div id="cloths">
+        <h3>Our advice:</h3>
+        <div id="advice">
+            <div id="top">
+                <?php
+                if($currentTemp >= 17){
+                    print '<img src="src/img/tshirt.png">';
+                }
+                if($currentTemp < 17){
+                    print '<img src="src/img/hoodie.png">';
+                }
+                ?>
+            </div>
+            <div id="bottom">
+                <?php
+                if($currentTemp >= 20){
+                    print '<img src="src/img/shorts.png">';
+                }
+                if($currentTemp < 20){
+                    print '<img src="src/img/trousers.png">';
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</header>
+<article>
+    <div id="chartContainer"></div>
+</article>
 </body>
 </html>
