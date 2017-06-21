@@ -1,5 +1,5 @@
 <?php
-$url = "history.txt";
+$url = "wkhistory.txt";
 $result = file_get_contents($url, false);
 if ($result === FALSE) {
     echo "Het is niet gelukt om de data op te halen!\n$data";

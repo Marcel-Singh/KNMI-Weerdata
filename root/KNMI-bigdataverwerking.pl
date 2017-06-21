@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 
 use strict;
 use warnings;
@@ -131,7 +131,7 @@ writeOut();
 ###############
 
 sub writeOut{
-    open(my $file, '>', 'weerdata_week.txt');
+    open(my $file, '>', 'wkhistory.txt');
 
     my @message = split /;/, $message;
     my @ma = split /,/, $message[0];
